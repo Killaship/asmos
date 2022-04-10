@@ -1,12 +1,14 @@
 org 0x7C00   ; add 0x7C00 to label addresses
 bits 16      ; tell the assembler we want 16 bit code
+
+
 mov ax, 0  ; set up segments
 mov ds, ax
 mov es, ax
 mov ss, ax     ; setup stack
 mov sp, 0x7C00 ; stack grows downwards from 0x7C00
    
-boot: ; this boot routine actually boots
+boot: 
 	; Load stage 2 to memory.
     mov ah, 0x02
     mov al, 0xFF ; amount of sectors to load
@@ -17,7 +19,8 @@ boot: ; this boot routine actually boots
     mov cl, 2
     mov bx, 0x1000 ; where the OS is location'ed
     int 0x13
-
+mov 0xb800, "AA"
+jmp $
 
 times 510-($-$$) db 0
 dw 0AA55h ; some BIOSes require this signature
