@@ -19,7 +19,7 @@ boot:
     mov cl, 2
     mov bx, 0x1000 ; where the OS is location'ed
     int 0x13
-mov 0xb800, "AA"
+
 jmp $
 
 times 510-($-$$) db 0
