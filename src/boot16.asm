@@ -20,12 +20,10 @@ boot:
     mov bx, 0x1000 ; where the OS is location'ed
     int 0x13
 
-jmp $
-
 times 510-($-$$) db 0
 dw 0AA55h ; some BIOSes require this signature
 
-
+shutdown:
         ; APM shutdown
         mov ax, 0x5300
         xor bx, bx
