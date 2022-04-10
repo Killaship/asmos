@@ -19,9 +19,13 @@ boot:
     mov cl, 2
     mov bx, 0x1000 ; where the OS is location'ed
     int 0x13
-
+	
+	jmp 0x1000
+	
 times 510-($-$$) db 0
 dw 0AA55h ; some BIOSes require this signature
+
+org 0x1000
 
 shutdown:
         ; APM shutdown
